@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1100</width>
+    <height>646</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Egg Inspection System</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true">#centralwidget { background-color: #f4f5f7; }
+QLabel { color: #1a1d27; font-family: &quot;Segoe UI&quot;; }
+#sidebar { background-color: #ffffff; border-right: 1px solid #e0e4e8; }
+#sidebarTitle { color: #1a1d27; font: 16pt &quot;Segoe UI Semibold&quot;; font-weight: 600; padding-left: 5px; }
+QPushButton { background-color: #e9ecef; color: #1a1d27; border: none; border-radius: 8px; padding: 12px 16px; text-align: left; font: 10pt &quot;Segoe UI&quot;; }
+QPushButton:hover { background-color: #dee2e6; border-left: 3px solid #2f7df5; }
+QPushButton:pressed { background-color: #cdd3d9; }
+#detectButton { background-color: #2f7df5; color: #ffffff; font-weight: 600; text-align: center; border-radius: 8px; }
+#detectButton:hover { background-color: #1a66d4; border-left: none; }
+#detectButton:pressed { background-color: #14529f; }
+#headerLabel { color: #1a1d27; font: 18pt &quot;Segoe UI Semibold&quot;; font-weight: 600; }
+#inputTitle, #outputTitle { color: #6c757d; font: 9pt &quot;Segoe UI Semibold&quot;; font-weight: 600; letter-spacing: 1px; }
+#originalImage, #resultImage { background-color: #ffffff; border: 1px solid #e0e4e8; border-radius: 12px; color: #6c757d; font: 10pt &quot;Segoe UI&quot;; }
+QProgressBar { background-color: #e9ecef; border: none; border-radius: 4px; text-align: center; color: #ffffff; font-size: 8pt; }
+QProgressBar::chunk { background-color: #2f7df5; border-radius: 4px; }
+QFrame#card1, QFrame#card2, QFrame#card3, QFrame#card4 { background-color: #ffffff; border: 1px solid #e0e4e8; border-radius: 12px; }
+QLabel#cardTitle { color: #6c757d; font: 8pt &quot;Segoe UI Semibold&quot;; font-weight: 600; letter-spacing: 1px; }
+QLabel#card1Value { color: #1a1d27; font: 24pt &quot;Segoe UI Semibold&quot;; font-weight: 600; }
+QLabel#card2Value { color: #28a745; font: 24pt &quot;Segoe UI Semibold&quot;; font-weight: 600; }
+QLabel#card3Value { color: #dc3545; font: 24pt &quot;Segoe UI Semibold&quot;; font-weight: 600; }
+QLabel#card4Value { color: #2f7df5; font: 24pt &quot;Segoe UI Semibold&quot;; font-weight: 600; }
+QStatusBar { background-color: #ffffff; color: #6c757d; border-top: 1px solid #e0e4e8; font-size: 9pt; }
+QStatusBar::item { border: none; }</string>
+   </property>
+   <widget class="QWidget" name="sidebar" native="true">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>220</width>
+      <height>700</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="sidebarTitle">
+     <property name="geometry">
+      <rect>
+       <x>25</x>
+       <y>35</y>
+       <width>170</width>
+       <height>30</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>🥚 EggInspect</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="browseButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>100</y>
+       <width>180</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>📂  Browse Image</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="detectButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>150</y>
+       <width>180</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>🔍  Run Detection</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="configButton">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>200</y>
+       <width>180</width>
+       <height>40</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>⚙️  Settings</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="mainContent" native="true">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>0</y>
+      <width>880</width>
+      <height>700</height>
+     </rect>
+    </property>
+    <widget class="QLabel" name="headerLabel">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>35</y>
+       <width>500</width>
+       <height>35</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Quality Control Dashboard</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="inputTitle">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>90</y>
+       <width>200</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>INPUT IMAGE</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="originalImage">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>115</y>
+       <width>390</width>
+       <height>340</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>No image loaded</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="outputTitle">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>90</y>
+       <width>200</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>DETECTION RESULT</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="resultImage">
+     <property name="geometry">
+      <rect>
+       <x>450</x>
+       <y>115</y>
+       <width>390</width>
+       <height>340</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="text">
+      <string>Awaiting detection</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QProgressBar" name="progressBar">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>470</y>
+       <width>810</width>
+       <height>12</height>
+      </rect>
+     </property>
+     <property name="value">
+      <number>0</number>
+     </property>
+     <property name="textVisible">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QWidget" name="metricsContainer" native="true">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>500</y>
+       <width>810</width>
+       <height>130</height>
+      </rect>
+     </property>
+     <widget class="QFrame" name="card1">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>195</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="card1Title">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>160</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>EXPECTED</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="card1Value">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>45</y>
+         <width>160</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>25</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="card2">
+      <property name="geometry">
+       <rect>
+        <x>205</x>
+        <y>10</y>
+        <width>195</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="cardTitle">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>160</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>DETECTED</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="card2Value">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>45</y>
+         <width>160</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="card3">
+      <property name="geometry">
+       <rect>
+        <x>410</x>
+        <y>10</y>
+        <width>195</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="cardTitle_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>160</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>MISSING</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="card3Value">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>45</y>
+         <width>160</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>0</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QFrame" name="card4">
+      <property name="geometry">
+       <rect>
+        <x>615</x>
+        <y>10</y>
+        <width>195</width>
+        <height>110</height>
+       </rect>
+      </property>
+      <widget class="QLabel" name="cardTitle_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>160</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>INSPECTION STATUS</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="card4Value">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>45</y>
+         <width>160</width>
+         <height>50</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>PENDING</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
